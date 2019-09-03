@@ -52,6 +52,7 @@ int main()
     for(int i=1;i<=n;i++)
         cin>>a[i];
     
+    //预处理m的所有欧拉函数
     int cur=m;
     while(cur != 1)
     {
