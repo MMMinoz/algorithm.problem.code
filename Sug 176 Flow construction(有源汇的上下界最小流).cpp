@@ -94,8 +94,6 @@ void Init()
     num=0;
 }
 
-///删点前 s t 超级源点 超级汇点
-///删点后 s t 源点 汇点
 int main()
 {
     while(~scanf("%d%d",&n,&m))
