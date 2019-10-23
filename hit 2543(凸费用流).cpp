@@ -23,7 +23,7 @@ void addEdge(int u,int v,int flow,int dis)
 
 int dis[maxn],pre[maxn],last[maxn];
 bool vis[maxn];
-bool spfa(int s,int t)
+bool spfa()
 {
     mem(pre,-1);
     mem(vis,0);
@@ -58,15 +58,14 @@ bool spfa(int s,int t)
 }
 
 int maxflow;ll mincost;
-int minCostFlow(int s,int t)
+int MCMF()
 {
     mincost=0,maxflow=0;
-    while(spfa(s,t))
+    while(spfa())
     {
         ll flow=INF;
         for(int i=t;i!=s;i=pre[i])
-            if(e[last[i]].flow<flow)
-                flow=e[last[i]].flow;
+            flow=min(flow,(ll)e[last[i]].flow);
         mincost+=dis[t]*flow;
         maxflow+=flow;
         if(mincost>C)
@@ -97,7 +96,7 @@ int main()
     {
         scanf("%d%d%d%d",&n,&m,&C,&P);
         Init();
-        int s=n,t=1;
+        s=n,t=1;
         addEdge(s,0,INF,P);
         for(int i=1;i<=m;i++)
         {
@@ -108,7 +107,7 @@ int main()
             addEdge(u,v,INF,c2);
             addEdge(v,u,INF,c2);
         }
-        minCostFlow(s,t);
+        MCMF();
         printf("%d\n",maxflow);
     }
     return 0;
